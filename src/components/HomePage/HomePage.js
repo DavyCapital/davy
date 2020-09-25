@@ -13,9 +13,8 @@ import { Fab, Box } from "@material-ui/core";
 
 import authentication from "../../services/authentication";
 
-import { Search as SearchIcon, Home as HomeIcon } from "@material-ui/icons";
+import { Search as SearchIcon } from "@material-ui/icons";
 
-import { ReactComponent as CabinIllustration } from "../../illustrations/cabin.svg";
 import { ReactComponent as InsertBlockIllustration } from "../../illustrations/insert-block.svg";
 
 class HomePage extends Component {
@@ -75,16 +74,16 @@ class HomePage extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user , roles } = this.props;
 
     if (user) {
       const pageView = (
         <Box>
           <DefaultPage 
-            image={<CabinIllustration/>}
             title={`Welcome back, `+ user.firstName}
             description="What would like search today?"
             user={user}
+            roles={roles}
           />
         </Box>
       );
@@ -117,6 +116,7 @@ class HomePage extends Component {
 
 HomePage.propTypes = {
   user: PropTypes.object,
+  roles: PropTypes.object
 };
 
 export default withRouter(HomePage);

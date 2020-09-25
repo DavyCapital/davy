@@ -4,7 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import PlaidLinkButton from "react-plaid-link-button";
 import { connect } from "react-redux";
 
-import { Card, CardHeader, CardContent, Button, Box, Typography } from "@material-ui/core";
+import { Button, Box, Typography } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import { addAccount, getTransactions } from "../../actions/accountActions";
 
 class PremiumApp extends React.Component {
   constructor(props) {
-    super(props);
+    //super(props);
   }
 
   componentDidMount() {
@@ -127,21 +127,21 @@ class PremiumApp extends React.Component {
     return res;
     }, {});
 
-    let spendItems = spendingData.map(item => (
-      <li key={item.category} style={{ marginTop: "1rem" }}>
-        <span  className="col s9 left text-left">{item.category}</span>
-        <span  className="col s3 left text-left">$-{Math.abs(item.amount.toFixed(2))}</span>
-        <br/>
-      </li>
-    ));
+    // let spendItems = spendingData.map(item => (
+    //   <li key={item.category} style={{ marginTop: "1rem" }}>
+    //     <span  className="col s9 left text-left">{item.category}</span>
+    //     <span  className="col s3 left text-left">$-{Math.abs(item.amount.toFixed(2))}</span>
+    //     <br/>
+    //   </li>
+    // ));
 
-    let earnedItems = holdingData.map(item => (
-      <li key={item.category} style={{ marginTop: "1rem" }}>
-        <span  className="col s9 left text-left">{item.category}</span>
-        <span  className="col s3 left text-left">${Math.abs(item.amount.toFixed(2))}</span>
-        <br/>
-      </li>
-    )); 
+    // let earnedItems = holdingData.map(item => (
+    //   <li key={item.category} style={{ marginTop: "1rem" }}>
+    //     <span  className="col s9 left text-left">{item.category}</span>
+    //     <span  className="col s3 left text-left">${Math.abs(item.amount.toFixed(2))}</span>
+    //     <br/>
+    //   </li>
+    // )); 
 
     // Chart data is rendered to ChartJS format
     // user spending per category pie chart
@@ -402,11 +402,15 @@ class PremiumApp extends React.Component {
               </Box>
             )}
               <Box mb={this.props.button && 2}>
-                <Typography variant="body2"><a>LEARN MORE</a></Typography>
+                  <Button component={Link} to="/learn" variant="text">
+                    LEARN MORE
+                  </Button>
                   <br/>
                   <Typography variant={variant}>Lets get started?</Typography>
-                  <Typography variant="body1">Link your bank account and connect with our secure payment processing system</Typography>
-                  <Typography variant="body2"><a>LEARN MORE</a></Typography>
+                  <Typography variant="body1">Link your bank account and connect with our secure payment system</Typography>
+                  <Button component={Link} to="/learn" variant="text">
+                    LEARN MORE
+                  </Button>
                   <br/>
                   <Box>
                       <PlaidLinkButton
@@ -462,11 +466,15 @@ class PremiumApp extends React.Component {
               </Box>
             )}
               <Box mb={this.props.button && 2}>
-                <Typography variant="body2"><a>LEARN MORE</a></Typography>
+                  <Button component={Link} to="/learn" variant="text">
+                    LEARN MORE
+                  </Button>
                   <br/>
                   <Typography variant={variant}>Lets get started?</Typography>
                   <Typography variant="body1">Link your bank account and connect with our secure payment processing system</Typography>
-                  <Typography variant="body2"><a>LEARN MORE</a></Typography>
+                  <Button component={Link} to="/learn" variant="text">
+                    LEARN MORE
+                  </Button>
                   <br/>
                   <Box>
                       <PlaidLinkButton

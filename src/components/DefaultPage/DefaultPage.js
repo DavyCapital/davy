@@ -19,9 +19,9 @@ class DefaultPage extends React.Component {
   }
 
   componentDidMount() {
-    const { accounts } = this.props.plaid;
-
-    if (accounts.length < 1 ) {
+    //const { accounts } = this.props.plaid;
+    const { roles } = this.props;
+    if (roles.premium) {
       this.props.getAccounts();
       this.props.fetchLinkToken();
     }
@@ -151,6 +151,7 @@ DefaultPage.defaultProps = {
   type: "page",
   size: "medium",
   padding: 2,
+  roles: {},
   accounts: [],
   transactions: []
 };
@@ -169,7 +170,8 @@ DefaultPage.propTypes = {
   fetchLinkToken: PropTypes.func.isRequired,
   accounts: PropTypes.array.isRequired,
   plaid: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  roles: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

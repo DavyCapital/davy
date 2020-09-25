@@ -14,10 +14,6 @@ import PremiumApp from "../PremiumApp";
 import SearchPage from "../SearchPage";
 import NotFoundPage from "../NotFoundPage";
 
-import { ReactComponent as CabinIllustration } from "../../illustrations/cabin.svg";
-import { ReactComponent as SearchIllustration } from "../../illustrations/search.svg";
-import { ReactComponent as DigitalIllustration } from "../../illustrations/digital.svg";
-
 class Router extends Component {
   render() {
     // Properties
@@ -48,23 +44,23 @@ class Router extends Component {
           </Route>
 
           <Route path={process.env.REACT_APP_SEARCH_LINK}>
-            {<SearchPage image={<SearchIllustration/>} search />}
+            {<SearchPage search />}
           </Route>
 
           <Route path={process.env.REACT_APP_PREMIUM_APP_PATH}>
-            {user ? <PremiumApp image={<DigitalIllustration/>} title={process.env.REACT_APP_PREMIUM_APP_NAME} description={process.env.REACT_APP_PREMIUM_APP_DESC}/> : <Redirect to="/" />}
+            {user ? <PremiumApp title={process.env.REACT_APP_PREMIUM_APP_NAME} description={process.env.REACT_APP_PREMIUM_APP_DESC}/> : <Redirect to="/" />}
           </Route>
 
           <Route path={process.env.REACT_APP_LINK_PATH_1}>
-            {user ? <Page1 image={<CabinIllustration/>} title={process.env.REACT_APP_LINK_PATH_1_NAME} description={process.env.REACT_APP_LINK_PATH_1_DESC}/> : <Redirect to="/" />}
+            {user ? <Page1 title={process.env.REACT_APP_LINK_PATH_1_NAME} description={process.env.REACT_APP_LINK_PATH_1_DESC}/> : <Redirect to="/" />}
           </Route>
 
           <Route path={process.env.REACT_APP_LINK_PATH_2}>
-            {user ? <Page2 image={<CabinIllustration/>} title={process.env.REACT_APP_LINK_PATH_2_NAME} description={process.env.REACT_APP_LINK_PATH_2_DESC}/> : <Redirect to="/" />}
+            {user ? <Page2 title={process.env.REACT_APP_LINK_PATH_2_NAME} description={process.env.REACT_APP_LINK_PATH_2_DESC}/> : <Redirect to="/" />}
           </Route>
 
           <Route path={process.env.REACT_APP_LINK_PATH_3}>
-            {user ? <Page3 image={<CabinIllustration/>} title={process.env.REACT_APP_LINK_PATH_3_NAME} description={process.env.REACT_APP_LINK_PATH_3_DESC}/> : <Redirect to="/" />}
+            {user ? <Page3 title={process.env.REACT_APP_LINK_PATH_3_NAME} description={process.env.REACT_APP_LINK_PATH_3_DESC}/> : <Redirect to="/" />}
           </Route>
 
           <Route>

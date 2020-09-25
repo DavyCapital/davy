@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Modal, Button, Box, Typography } from "@material-ui/core";
 
 import { makeStyles } from '@material-ui/core/styles';
+import { CardMedia } from '@material-ui/core';
 
 import { Link } from "react-router-dom";
 
@@ -55,60 +56,48 @@ function Hit(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const imageWidth = 40;
-  const imageHeight = 40;
+  const imageWidth = 100;
+  const imageHeight = 100;
 
   return (
-    <Box className="center">
-        {/* {props.hit.image && (
-          <Box
-            clone
-            mb={props.hit.fundManager || props.hit.eventDate ? 2 : 0}
-            width={`${imageWidth}%`}
-            height={`${imageHeight}%`}
-          >
-            {props.hit.image}
-          </Box>
-        )} */}
-        {props.hit.name && (
-          <Box mb={props.hit.name && 2} onClick={handleOpen}>
-            <Typography variant="subtitle1" color="textPrimary">
-              <b>{props.hit.name}</b>
-            </Typography>
-            <hr/>
-            <Typography variant="body1" className="text-left" style={{marginLeft:"9%"}} color="textPrimary">
-              <b>Type:</b> {props.hit.type}<br/>
-              <b>Cost:</b> $ {props.hit.cost}/share<br/>
-              <b>IRR:</b> {props.hit.expectedIRR}<br/>                
-            </Typography>
-            <hr/>
-            <Typography variant="body2" color="textPrimary">
-              {props.hit.fundManager}<br/>
-            </Typography>
-          </Box>
+    <Box className="center" >
+      <Box className="center" onClick={handleOpen}>
+        {props.hit.image && (
+          <CardMedia style={{width:`${imageWidth}%`, height: `${imageHeight}%`, alignItems: 'center'}} src={`${props.hit.image}`} component='img'/>
         )}
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-        >
-          <div style={modalStyle} className={classes.paper}>
-            <Typography variant="subtitle1" color="textPrimary">
-              <b>{props.hit.name}</b>
-            </Typography>
-            <hr/>
-            <Typography variant="body1" className="text-left" style={{marginLeft:"9%"}} color="textPrimary">
-              <b>Type:</b> {props.hit.type}<br/>
-              <b>Cost:</b> $ {props.hit.cost}/share<br/>
-              <b>IRR:</b> {props.hit.expectedIRR}<br/>                
-            </Typography>
-            <hr/>
+        <hr/>
+        {props.hit.name && (
+          <Box mb={props.hit.name && 2}>
             <Typography variant="body2" color="textPrimary">
-              {props.hit.fundManager}<br/>
+              {props.hit.name}<br/>
+              <b>{props.hit.owner}</b>
             </Typography>
-          </div>
-        </Modal>
+          </Box>
+        )}        
+      </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <Typography variant="subtitle1" color="textPrimary">
+            <b>{props.hit.name}</b>
+          </Typography>
+          <hr/>
+          <Typography variant="body1" className="text-left" style={{marginLeft:"9%"}} color="textPrimary">
+            <b>{process.env.REACT_APP_ALGOLIA_HIT_ITEM_DESC_1}</b> {props.hit.desc_1}<br/>
+            <b>{process.env.REACT_APP_ALGOLIA_HIT_ITEM_DESC_2}</b> {props.hit.desc_2}<br/>
+            <b>{process.env.REACT_APP_ALGOLIA_HIT_ITEM_DESC_3}</b> {props.hit.desc_3}<br/>                  
+          </Typography>
+          <hr/>
+          <Typography variant="body2" color="textPrimary">
+            {props.hit.owner}<br/>
+            {props.hit.address}
+          </Typography>
+        </div>
+      </Modal>
     </Box> 
   );
 }

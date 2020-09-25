@@ -72,7 +72,9 @@ function Page3(props) {
                 <br/>
                 <hr/>
                 <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_3}</b> {process.env.REACT_APP_PAGE_ITEM_3_DESC}</Typography>
-                <Typography variant="body1"><a href="#">LEARN MORE</a></Typography>
+                <Button component={Link} to="/learn" variant="text">
+                  LEARN MORE
+                </Button>
                 <br/>
                 <Typography variant={variant}>{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
                 <Box>
@@ -121,7 +123,9 @@ function Page3(props) {
                 <br/>
                 <hr/>
                 <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_3}</b> {process.env.REACT_APP_PAGE_ITEM_3_DESC}</Typography>
-                <Typography variant="body1"><a href="#">LEARN MORE</a></Typography>
+                <Button component={Link} to="/learn" variant="text">
+                  LEARN MORE
+                </Button>
                 <br/>
                 <Box>
                     <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">

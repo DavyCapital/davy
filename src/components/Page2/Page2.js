@@ -71,7 +71,9 @@ function Page2(props) {
           <Box mb={props.button && 2}>
                 <hr/>
                 <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
-                <Typography variant="body1"><a href="#">LEARN MORE</a></Typography>
+                <Button component={Link} to="/learn" variant="text">
+                  LEARN MORE
+                </Button>
                 <br/>
                 <Typography variant={variant}>{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
                 <Box>
@@ -119,7 +121,9 @@ function Page2(props) {
             <Box mb={props.button && 2}>
                 <hr/>
                 <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
-                <Typography variant="body1"><a href="#">LEARN MORE</a></Typography>
+                <Button component={Link} to="/learn" variant="text">
+                  LEARN MORE
+                </Button>
                 <br/>
                 <Typography variant={variant}>What is your preference today?</Typography>
                 <Box>
