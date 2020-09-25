@@ -1,0 +1,25 @@
+{
+  "short_name": "DAVY",
+  "name": "DAVYGROUP",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo222.svg",
+      "type": "image/x-icon",
+      "sizes": "222x222"
+    },
+    {
+      "src": "logo444.svg",
+      "type": "image/x-icon",
+      "sizes": "444x444"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2196f3",
+  "background_color": "#ffffff"
+}
