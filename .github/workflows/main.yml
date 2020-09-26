@@ -1,0 +1,84 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Davy Node Continuous Integration
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+      env:
+        REACT_APP_NAME: 'davy'
+        REACT_APP_VERSION: '3.1.1'
+        REACT_APP_DESCRIPTION: 'Asset search engine'
+        REACT_APP_TITLE: 'DAVY'
+        REACT_APP_MESSAGE: 'What would like own today?'
+        REACT_APP_THEME_PRIMARY_COLOR: 'gray'
+        REACT_APP_THEME_SECONDARY_COLOR: 'blue'
+        REACT_APP_THEME_DARK: false
+        REACT_APP_HOMEPAGE: ${{ secrets.PROD_HOMEPAGE }} 'https://dev.davygroup.com'
+        REACT_APP_SENTRY_DSN: ${{ secrets.PROD_SENTRY_DSN }} 'https://52bff907a84640deb2b8868ef4bd072b@o449025.ingest.sentry.io/5431301'
+        REACT_APP_FIREBASE_API_KEY: ${{ secrets.PROD_FIREBASE_API_KEY }} 'AIzaSyCqWh_wG8xXnYd0pRXI01xmnFVhB6Cecio'
+        REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.PROD_FIREBASE_AUTH_DOMAIN }} 'davyapp-1d940.firebaseapp.com'
+        REACT_APP_FIREBASE_DATABASE_URL: ${{ secrets.PROD_FIREBASE_DATABASE_URL }} 'https://davyapp-1d940.firebaseio.com'
+        REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.PROD_FIREBASE_PROJECT_ID }} 'davyapp-1d940'
+        REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.PROD_FIREBASE_STORAGE_BUCKET }} 'davyapp-1d940.appspot.com'
+        REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.PROD_FIREBASE_MESSAGING_SENDER_ID }} '659842526183'
+        REACT_APP_FIREBASE_APP_ID: ${{ secrets.PROD_FIREBASE_APP_ID }} '1:659842526183:web:0ab902c37528fd8962eb42'
+        REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.PROD_FIREBASE_MEASUREMENT_ID }}  'G-ZZ6QP78LFG'
+        REACT_APP_ALGOLIA_APP_ID: ${{ secrets.PROD_ALGOLIA_APP_ID }} 'CIAXIVAMYK'
+        REACT_APP_ALGOLIA_API_KEY: ${{ secrets.PROD_ALGOLIA_API_KEY }} '3d4001a23a4bfb85bf1a8236ef8db95d'
+        REACT_APP_ALGOLIA_INDEX_NAME: ${{ secrets.PROD_ALGOLIA_INDEX_NAME }} 'digital_assets'
+        REACT_APP_PREMIUM_APP_NAME: 'DIGITALBANC'
+        REACT_APP_PREMIUM_APP_DESC: 'A secure link to your digital bank accounts.'
+        REACT_APP_PREMIUM_APP_PATH: '/digitalbanc'
+        REACT_APP_SEARCH_LINK: '/search'
+        REACT_APP_SEARCH_MESSAGE: 'What is your preference today?'
+        REACT_APP_LINK_PATH_1_NAME: 'Debt'
+        REACT_APP_LINK_PATH_1_DESC: 'Real estate debt, where you own the mortgage, we manage the assets and you collect monthly rental income.'
+        REACT_APP_LINK_PATH_1: '/debt'
+        REACT_APP_LINK_PATH_2_NAME: 'Equity'
+        REACT_APP_LINK_PATH_2_DESC: 'Real estate equity, where you own the asset, we improve asset performance and you collect the appreciation.'
+        REACT_APP_LINK_PATH_2: '/equity'
+        REACT_APP_LINK_PATH_3_NAME: 'Gold'
+        REACT_APP_LINK_PATH_3_DESC: 'Own digital gold in your secure digital wallet with our repurchase guarantee, where you may liquidate your digital assets with us at market rate and get your cashback at anytime.'
+        REACT_APP_LINK_PATH_3: '/digitalgold'
+        REACT_APP_PAGE_ITEM_1: 'reDebt'
+        REACT_APP_PAGE_ITEM_1_TYPE: 'Real Estate'
+        REACT_APP_PAGE_ITEM_1_DESC: 'is a cost-effective, convenient, and secure way to invest in real estate debt and receive regular monthly income.'
+        REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_PRIMARY: 'Residential'
+        REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_SECONDARY: 'Commercial'
+        REACT_APP_PAGE_ITEM_2: 'reEquity'
+        REACT_APP_PAGE_ITEM_2_TYPE: 'Real Estate'
+        REACT_APP_PAGE_ITEM_2_DESC: 'is a cost-effective, convenient, and secure way to invest in securities backed by real estate using digital funding mechanisms.'
+        REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY: 'Residential'
+        REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY: 'Commercial'
+        REACT_APP_PAGE_ITEM_3: 'digiGold'
+        REACT_APP_PAGE_ITEM_3_TYPE: 'Gold'
+        REACT_APP_PAGE_ITEM_3_DESC: 'is a cost-effective, convenient, and secure way to invest in physical gold using digital blockchain technologies.'
+        REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: 'Digital'
+        REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: 'Physical'
+    - run: npm test
