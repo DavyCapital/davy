@@ -15,8 +15,6 @@ import authentication from "../../services/authentication";
 
 import { Search as SearchIcon } from "@material-ui/icons";
 
-import { ReactComponent as InsertBlockIllustration } from "../../illustrations/insert-block.svg";
-
 class HomePage extends Component {
   signInWithEmailLink = () => {
     const { user } = this.props;
@@ -93,7 +91,6 @@ class HomePage extends Component {
     return (
       <Box>
         <EmptyState
-          image={<InsertBlockIllustration />}
           title={process.env.REACT_APP_DESCRIPTION}
           description={process.env.REACT_APP_MESSAGE}
           button={
