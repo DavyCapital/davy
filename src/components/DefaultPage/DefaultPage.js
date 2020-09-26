@@ -7,6 +7,7 @@ import { Button, Box, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import { fetchLinkToken, getAccounts } from "../../actions/accountActions";
+
 import Loader from "../Loader";
 
 class DefaultPage extends React.Component {
@@ -19,7 +20,6 @@ class DefaultPage extends React.Component {
   }
 
   componentDidMount() {
-    //const { accounts } = this.props.plaid;
     const { roles } = this.props;
     if (roles.premium) {
       this.props.getAccounts();

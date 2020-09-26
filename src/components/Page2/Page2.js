@@ -68,27 +68,23 @@ function Page2(props) {
             </Box>
           )}
     
-          <Box mb={props.button && 2}>
-                <hr/>
-                <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
-                <Button component={Link} to="/learn" variant="text">
-                  LEARN MORE
-                </Button>
-                <br/>
-                <Typography variant={variant}>{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
-                <Box>
-                    <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
-                      {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
-                    </Button>
-                    <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
-                      {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
-                    </Button>
-                </Box>
-                <Box mb={props.button && 2}>
-                    <br/>
-                    <Button component={Link} to="/" style={{margin: "10px", width: "65%"}} variant="outlined" size="large" color="primary">Go Back</Button>
-                </Box>
+          {props.searchfilter && (
+            <Box mb={props.button && 2}>
+              <Typography variant={variant}>{props.searchfilter}</Typography>
+              <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
+              <Typography variant="body1">{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
+              <hr/>
+              <Box>
+                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                    {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
+                  </Button>
+                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                    {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
+                  </Button>
+              </Box>
             </Box>
+          )}
+          
           {props.button && props.button}
         </Box>
       );
@@ -118,27 +114,24 @@ function Page2(props) {
               <Typography variant="body1">{props.description}</Typography>
             </Box>
           )}
+
+          {props.searchfilter && (
             <Box mb={props.button && 2}>
-                <hr/>
-                <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
-                <Button component={Link} to="/learn" variant="text">
-                  LEARN MORE
-                </Button>
-                <br/>
-                <Typography variant={variant}>What is your preference today?</Typography>
-                <Box>
-                    <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
-                      {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
-                    </Button>
-                    <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
-                      {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
-                    </Button>
-                </Box>
-                <Box mb={props.button && 2}>
-                    <br/>
-                    <Button component={Link} to="/" style={{margin: "10px", width: "65%"}} variant="outlined" size="large" color="primary">Go Back</Button>
-                </Box>
+              <Typography variant={variant}>{props.searchfilter}</Typography>
+              <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_2}</b> {process.env.REACT_APP_PAGE_ITEM_2_DESC}</Typography>
+              <Typography variant="body1">{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
+              <hr/>
+              <Box>
+                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                    {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
+                  </Button>
+                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                    {process.env.REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_2_TYPE}
+                  </Button>
+              </Box>
             </Box>
+          )}
+
           {props.button && props.button}
         </Box>
       );
@@ -161,6 +154,7 @@ Page2.propTypes = {
     image: PropTypes.element,
     title: PropTypes.string,
     description: PropTypes.string,
+    searchfilter: PropTypes.string,
     button: PropTypes.element,
   };
 
