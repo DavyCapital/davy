@@ -84,3 +84,35 @@ jobs:
         REACT_APP_PAGE_ITEM_3_DESC: ${{ secrets.PAGE_ITEM_3_DESC }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_PRIMARY }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
+  deploy:
+    name: Deploy
+    if: github.ref == 'latest'
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install firebase tools
+        run: npm install -g firebase-tools
+      - name: Download build artifact
+        uses: actions/download-artifact@master
+        with:
+          name: build
+          path: build
+      - name: Deploy Hosting
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_CI_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_CI_GCP_SA_KEY }}
+          NODE_ENV: ${{ secrets.FIREBASE_CI_NODE_ENV }}
