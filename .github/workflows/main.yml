@@ -86,7 +86,7 @@ jobs:
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
   deploy:
     name: Deploy
-    if: ${{ secrets.DEPLOY_NODE }}
+    if: github.ref == 'test'
     needs: build
     runs-on: ubuntu-latest
     strategy:
