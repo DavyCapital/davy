@@ -6,7 +6,7 @@ name: Davy Node CI
 # events but only for the master branch
 on:
   push:
-    branches: [ staging ]
+    branches: [ latest, staging ]
   pull_request:
     branches: [ master ]
 
