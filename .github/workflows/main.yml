@@ -6,7 +6,7 @@ name: Davy Node CI
 # events but only for the master branch
 on:
   push:
-    branches: [ staging ]
+    branches: [ latest, staging ]
   pull_request:
     branches: [ master ]
 
@@ -86,7 +86,7 @@ jobs:
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
   deploy:
     name: Deploy
-    if: github.ref == 'test'
+    if: github.ref == 'latest'
     needs: build
     runs-on: ubuntu-latest
     strategy:
