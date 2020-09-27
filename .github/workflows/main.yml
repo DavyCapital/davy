@@ -84,6 +84,22 @@ jobs:
         REACT_APP_PAGE_ITEM_3_DESC: ${{ secrets.PAGE_ITEM_3_DESC }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_PRIMARY }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
+  test:
+    name: Test
+    if: github.ref == 'refs/heads/latest'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn test
   deploy:
     name: Deploy
     if: github.ref == 'refs/heads/latest' 
