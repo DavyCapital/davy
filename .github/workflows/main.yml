@@ -84,6 +84,11 @@ jobs:
         REACT_APP_PAGE_ITEM_3_DESC: ${{ secrets.PAGE_ITEM_3_DESC }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_PRIMARY }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: build
   test:
     name: Test
     if: github.ref == 'refs/heads/staging'
@@ -132,3 +137,12 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_CI_TOKEN }}
           GCP_SA_KEY: ${{ secrets.FIREBASE_CI_GCP_SA_KEY }}
           NODE_ENV: ${{ secrets.FIREBASE_CI_NODE_ENV }}
+  cleanup: 
+    - name: create empty directory
+      run: |
+        mkdir empty.d
+    - name: empty build archive
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: empty.d
