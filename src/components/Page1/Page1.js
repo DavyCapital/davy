@@ -70,21 +70,19 @@ function Page1(props) {
   
           {props.searchfilter && (
             <Box mb={props.button && 2}>
-              <Typography variant={variant}>{props.searchfilter}</Typography>
               <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_1}</b> {process.env.REACT_APP_PAGE_ITEM_1_DESC}</Typography>
               <Typography variant="body1">{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
               <hr/>
               <Box>
-                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                  <Button component={Link} to={`/search?type=${props.searchfilter}`} style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
                     {process.env.REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_1_TYPE}
                   </Button>
-                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                  <Button component={Link} to={`/search?type=${props.searchfilter}`} style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
                     {process.env.REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_1_TYPE}
                   </Button>
               </Box>
             </Box>
           )}
-          
           {props.button && props.button}
         </Box>
       );
@@ -117,15 +115,14 @@ function Page1(props) {
 
           {props.searchfilter && (
             <Box mb={props.button && 2}>
-              <Typography variant={variant}>{props.searchfilter}</Typography>
               <Typography variant="body1"><b>{process.env.REACT_APP_PAGE_ITEM_1}</b> {process.env.REACT_APP_PAGE_ITEM_1_DESC}</Typography>
               <Typography variant="body1">{process.env.REACT_APP_SEARCH_MESSAGE}</Typography>
               <hr/>
               <Box>
-                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                  <Button component={Link} to={`/search?type=${props.searchfilter}`} style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
                     {process.env.REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_PRIMARY}<br/>{process.env.REACT_APP_PAGE_ITEM_1_TYPE}
                   </Button>
-                  <Button component={Link} to="/search" style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
+                  <Button component={Link} to={`/search?type=${props.searchfilter}`} style={{margin: "3%", height: "90px", width: "44%"}} size="large" variant="contained">
                     {process.env.REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_SECONDARY}<br/>{process.env.REACT_APP_PAGE_ITEM_1_TYPE}
                   </Button>
               </Box>
