@@ -28,9 +28,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm audit fix
-    - run: npm run build --if-present
+    - run: yarn install
+    - run: yarn build
       env:
         REACT_APP_VERSION: '3.1.1'
         REACT_APP_NAME: ${{ secrets.NAME }}
@@ -85,4 +84,3 @@ jobs:
         REACT_APP_PAGE_ITEM_3_DESC: ${{ secrets.PAGE_ITEM_3_DESC }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_PRIMARY }}
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
-    - run: npm test
