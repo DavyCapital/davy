@@ -86,7 +86,7 @@ jobs:
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
   deploy:
     name: Deploy
-    if: github.ref == 'latest'
+    if: github.ref == 'refs/heads/latest' 
     needs: build
     runs-on: ubuntu-latest
     strategy:
