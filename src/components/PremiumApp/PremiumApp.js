@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PlaidLinkButton } from "react-plaid-link-button";
+import PlaidLinkButton from "react-plaid-link-button";
 import { connect } from "react-redux";
 
 import { Box, Typography } from "@material-ui/core";
