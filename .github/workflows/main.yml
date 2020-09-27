@@ -86,7 +86,7 @@ jobs:
         REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
   test:
     name: Test
-    if: github.ref == 'refs/heads/latest'
+    if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     strategy:
       matrix:
