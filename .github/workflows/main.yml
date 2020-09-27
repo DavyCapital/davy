@@ -1,0 +1,87 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Davy Node CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+      env:
+        REACT_APP_VERSION: '3.1.1'
+        REACT_APP_NAME: ${{ secrets.NAME }}
+        REACT_APP_DESCRIPTION: ${{ secrets.DESCRIPTION }}
+        REACT_APP_TITLE: ${{ secrets.TITLE }}
+        REACT_APP_MESSAGE: ${{ secrets.MESSAGE }}
+        REACT_APP_HOMEPAGE: ${{ secrets.HOMEPAGE }}
+        REACT_APP_THEME_PRIMARY_COLOR: ${{ secrets.THEME_PRIMARY_COLOR }}
+        REACT_APP_THEME_SECONDARY_COLOR: ${{ secrets.THEME_SECONDARY_COLOR }}
+        REACT_APP_THEME_DARK: ${{ secrets.THEME_DARK }}
+        REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        REACT_APP_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+        REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+        REACT_APP_FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }} 
+        REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }} 
+        REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }} 
+        REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }} 
+        REACT_APP_FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} 
+        REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}  
+        REACT_APP_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        REACT_APP_ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }} 
+        REACT_APP_ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
+        REACT_APP_PREMIUM_APP_NAME: ${{ secrets.PREMIUM_APP_NAME }} 
+        REACT_APP_PREMIUM_APP_DESC: ${{ secrets.PREMIUM_APP_DESC }}
+        REACT_APP_PREMIUM_APP_PATH: ${{ secrets.PREMIUM_APP_PATH }}
+        REACT_APP_SEARCH_LINK: ${{ secrets.SEARCH_LINK }}
+        REACT_APP_SEARCH_MESSAGE: ${{ secrets.SEARCH_MESSAGE }} 
+        REACT_APP_LINK_PATH_1_NAME: ${{ secrets.LINK_PATH_1_NAME }}
+        REACT_APP_LINK_PATH_1_FILTER: ${{ secrets.LINK_PATH_1_FILTER }} 
+        REACT_APP_LINK_PATH_1_DESC: ${{ secrets.LINK_PATH_1_DESC }} 
+        REACT_APP_LINK_PATH_1: ${{ secrets.LINK_PATH_1 }}
+        REACT_APP_LINK_PATH_2_NAME: ${{ secrets.LINK_PATH_2_NAME }}
+        REACT_APP_LINK_PATH_2_FILTER: ${{ secrets.LINK_PATH_2_FILTER }}
+        REACT_APP_LINK_PATH_2_DESC: ${{ secrets.LINK_PATH_2_DESC }}
+        REACT_APP_LINK_PATH_2: ${{ secrets.LINK_PATH_2 }}
+        REACT_APP_LINK_PATH_3_NAME: ${{ secrets.LINK_PATH_3_NAME }}
+        REACT_APP_LINK_PATH_3_FILTER: ${{ secrets.LINK_PATH_3_FILTER }}
+        REACT_APP_LINK_PATH_3_DESC: ${{ secrets.LINK_PATH_3_DESC }}
+        REACT_APP_LINK_PATH_3: ${{ secrets.LINK_PATH_3 }}
+        REACT_APP_PAGE_ITEM_1: ${{ secrets.PAGE_ITEM_1 }}
+        REACT_APP_PAGE_ITEM_1_TYPE: ${{ secrets.PAGE_ITEM_1_TYPE }}
+        REACT_APP_PAGE_ITEM_1_DESC: ${{ secrets.PAGE_ITEM_1_DESC }}
+        REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_1_SEARCH_TYPE_PRIMARY }}
+        REACT_APP_PAGE_ITEM_1_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_1_SEARCH_TYPE_SECONDARY }}
+        REACT_APP_PAGE_ITEM_2: ${{ secrets.PAGE_ITEM_2 }}
+        REACT_APP_PAGE_ITEM_2_TYPE: ${{ secrets.PAGE_ITEM_2_TYPE }}
+        REACT_APP_PAGE_ITEM_2_DESC: ${{ secrets.PAGE_ITEM_2_DESC }}
+        REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_2_SEARCH_TYPE_PRIMARY }}
+        REACT_APP_PAGE_ITEM_2_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_2_SEARCH_TYPE_SECONDARY }}
+        REACT_APP_PAGE_ITEM_3: ${{ secrets.PAGE_ITEM_3 }}
+        REACT_APP_PAGE_ITEM_3_TYPE: ${{ secrets.PAGE_ITEM_3_TYPE }}
+        REACT_APP_PAGE_ITEM_3_DESC: ${{ secrets.PAGE_ITEM_3_DESC }}
+        REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_PRIMARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_PRIMARY }}
+        REACT_APP_PAGE_ITEM_3_SEARCH_TYPE_SECONDARY: ${{ secrets.PAGE_ITEM_3_SEARCH_TYPE_SECONDARY }}
+    - run: npm test
