@@ -3,7 +3,38 @@ import PropTypes from "prop-types";
 
 import { Box, Typography } from "@material-ui/core";
 
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+
+const styles = {
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+  },
+  input: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    width: 1,
+    height: 28,
+    margin: 4,
+  },
+};
+
 function EmptyState(props) {
+  const { classes } = props;
   let imageWidth;
   let imageHeight;
   let variant;
@@ -66,6 +97,25 @@ function EmptyState(props) {
           </Box>
         )}
 
+        {props.search && (
+          <Box mb={!props.description && props.button ? 2 : 0}>  
+            <Paper className={classes.root} elevation={1}>
+              <IconButton className={classes.iconButton} aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <InputBase className={classes.input} placeholder="Search Keywords" />
+              <IconButton className={classes.iconButton} aria-label="Search">
+                <SearchIcon />
+              </IconButton>
+              <Divider className={classes.divider} />
+              <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+                <AssessmentIcon />
+              </IconButton>
+            </Paper>
+            <br/>
+          </Box>
+        )}
+
         {props.button && props.button}
       </Box>
     );
@@ -96,6 +146,25 @@ function EmptyState(props) {
           </Box>
         )}
 
+        {props.search && (
+          <Box mb={!props.description && props.button ? 2 : 0}>  
+            <Paper className={classes.root} elevation={1}>
+              <IconButton className={classes.iconButton} aria-label="Menu">
+                <MenuIcon />
+              </IconButton>
+              <InputBase className={classes.input} placeholder="Search Digital Investment Offerings" />
+              <IconButton className={classes.iconButton} aria-label="Search">
+                <SearchIcon />
+              </IconButton>
+              <Divider className={classes.divider} />
+              <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+                <AssessmentIcon />
+              </IconButton>
+            </Paper>
+            <br/>
+          </Box>
+        )}
+
         {props.button && props.button}
       </Box>
     );
@@ -118,7 +187,8 @@ EmptyState.propTypes = {
   image: PropTypes.element,
   title: PropTypes.string,
   description: PropTypes.string,
+  search: PropTypes.bool,
   button: PropTypes.element,
 };
 
-export default EmptyState;
+export default withStyles(styles)(EmptyState);

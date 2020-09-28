@@ -5,11 +5,7 @@ import {
   ADD_ACCOUNT,
   DELETE_ACCOUNT,
   GET_ACCOUNTS,
-  ACCOUNTS_LOADING,
-  GET_BALANCES,
-  BALANCES_LOADING,
-  GET_TRANSACTIONS,
-  TRANSACTIONS_LOADING
+  ACCOUNTS_LOADING
 } from "./types";
 
 import { auth } from "../firebase";
@@ -125,65 +121,5 @@ export const getAccounts = () => dispatch => {
 export const setAccountsLoading = () => {
   return {
     type: ACCOUNTS_LOADING
-  };
-};
-// Get Balances
-export const getBalances = plaidData => dispatch => {
-  dispatch(setBalancesLoading());
-  auth
-  .currentUser
-  .getIdToken()
-  .then(function(result) {
-    setAuthToken(result);
-    axios
-      .post("/api/plaid/accounts/balance/get", plaidData)
-      .then(res =>
-        dispatch({
-          type: GET_BALANCES,
-          payload: res.data
-        })
-      )
-      .catch(err =>
-        dispatch({
-          type: GET_BALANCES,
-          payload: null
-        })
-      );  
-  })
-};
-// Balances loading
-export const setBalancesLoading = () => {
-  return {
-    type: BALANCES_LOADING
-  };
-};
-// Get Transactions
-export const getTransactions = plaidData => dispatch => {
-  dispatch(setTransactionsLoading());
-  auth
-  .currentUser
-  .getIdToken()
-  .then(function(result) {
-    setAuthToken(result);
-    axios
-      .post("/api/plaid/accounts/transactions", plaidData)
-      .then(res =>
-        dispatch({
-          type: GET_TRANSACTIONS,
-          payload: res.data
-        })
-      )
-      .catch(err =>
-        dispatch({
-          type: GET_TRANSACTIONS,
-          payload: null
-        })
-      );  
-  })
-};
-// Transactions loading
-export const setTransactionsLoading = () => {
-  return {
-    type: TRANSACTIONS_LOADING
   };
 };
