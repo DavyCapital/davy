@@ -60,7 +60,7 @@ function Hit(props) {
   const imageHeight = 100;
 
   return (
-    <Box className="center">
+    <Box className="center" style={{ height: '222px'}}>
       <Box className="center" onClick={handleOpen}>
         {props.hit.image && (
           <CardMedia style={{width:`${imageWidth}%`, height: `${imageHeight}%`, alignItems: 'center'}} src={`${props.hit.image}`} component='img'/>
@@ -172,7 +172,7 @@ function SearchPage(props) {
 
         {props.search && (
           <Box mb={!props.description && props.button ? 2 : 0}>
-            <div className="center-panel">
+            <div className="center-panel" style={{ marginTop: '20%'}}>
               <InstantSearch indexName="digital_assets" searchClient={searchClient}>
                 <SearchBox  />
                 <Hits hitComponent={Hit} />
