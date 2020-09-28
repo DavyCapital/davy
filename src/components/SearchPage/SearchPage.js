@@ -60,7 +60,7 @@ function Hit(props) {
   const imageHeight = 100;
 
   return (
-    <Box className="center" >
+    <Box className="center">
       <Box className="center" onClick={handleOpen}>
         {props.hit.image && (
           <CardMedia style={{width:`${imageWidth}%`, height: `${imageHeight}%`, alignItems: 'center'}} src={`${props.hit.image}`} component='img'/>
