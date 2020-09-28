@@ -8,11 +8,17 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
-const styles = {
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
+
+const styles = theme => ({
   root: {
     padding: '2px 4px',
     display: 'flex',
@@ -31,7 +37,29 @@ const styles = {
     height: 28,
     margin: 4,
   },
-};
+  card: {
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '300'
+  },
+  content: {
+    flex: '1 0 auto',
+    textAlign: 'left'
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+  },
+  appIcon: {
+    height: 38,
+    width: 38,
+  },
+});
 
 function EmptyState(props) {
   const { classes } = props;
@@ -100,15 +128,15 @@ function EmptyState(props) {
         {props.search && (
           <Box mb={!props.description && props.button ? 2 : 0}>  
             <Paper className={classes.root} elevation={1}>
-              <IconButton className={classes.iconButton} aria-label="Menu">
-                <MenuIcon />
+              <IconButton className={classes.iconButton} aria-label="Apps">
+                <LocalParkingIcon style={{transform: "rotate(-180deg)", backgroundColor: '#1c54b2', color: 'white', border: '1px', borderRadius: '3px', borderColor: 'white'}} />
               </IconButton>
               <InputBase className={classes.input} placeholder="Search Keywords" />
               <IconButton className={classes.iconButton} aria-label="Search">
                 <SearchIcon />
               </IconButton>
               <Divider className={classes.divider} />
-              <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+              <IconButton color="primary" className={classes.iconButton} aria-label="Assessment">
                 <AssessmentIcon />
               </IconButton>
             </Paper>
@@ -117,6 +145,36 @@ function EmptyState(props) {
         )}
 
         {props.button && props.button}
+
+        {props.user && (
+        <Box mb={!props.description && props.button ? 2 : 0}>  
+          <br/>
+          <br/>
+          <Card className={classes.card}>
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                  My Apps
+                </Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  Select to access application 
+                </Typography>
+              </CardContent>
+              <div className={classes.controls}>
+                <IconButton aria-label="Item_1">
+                  <AccountBalanceWalletIcon className={classes.appIcon} />
+                </IconButton>
+                <IconButton aria-label="Item_2">
+                  <AccountBalanceIcon className={classes.appIcon} />
+                </IconButton>
+                <IconButton aria-label="Item_3">
+                  <BeenhereIcon className={classes.appIcon} />
+                </IconButton>
+              </div>
+            </div>
+          </Card>     
+        </Box>
+        )}
       </Box>
     );
   }
@@ -149,15 +207,15 @@ function EmptyState(props) {
         {props.search && (
           <Box mb={!props.description && props.button ? 2 : 0}>  
             <Paper className={classes.root} elevation={1}>
-              <IconButton className={classes.iconButton} aria-label="Menu">
-                <MenuIcon />
+              <IconButton className={classes.iconButton} aria-label="Apps">
+                <LocalParkingIcon style={{transform: "rotate(-180deg)"}} />
               </IconButton>
-              <InputBase className={classes.input} placeholder="Search Digital Investment Offerings" />
+              <InputBase className={classes.input} placeholder="Search Keywords" />
               <IconButton className={classes.iconButton} aria-label="Search">
                 <SearchIcon />
               </IconButton>
               <Divider className={classes.divider} />
-              <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
+              <IconButton color="primary" className={classes.iconButton} aria-label="Assessment">
                 <AssessmentIcon />
               </IconButton>
             </Paper>
@@ -166,6 +224,37 @@ function EmptyState(props) {
         )}
 
         {props.button && props.button}
+
+        {props.user && (
+        <Box mb={!props.description && props.button ? 2 : 0}>  
+          <br/>
+          <br/>
+          <Card className={classes.card}>
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+              <Typography component="h5" variant="h5">
+                  My Apps
+                </Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  Select to access application 
+                </Typography>
+              </CardContent>
+              <div className={classes.controls}>
+                <IconButton aria-label="Item_1">
+                  <AccountBalanceWalletIcon className={classes.appIcon} />
+                </IconButton>
+                <IconButton aria-label="Item_2">
+                  <AccountBalanceIcon className={classes.appIcon} />
+                </IconButton>
+                <IconButton aria-label="Item_3">
+                  <BeenhereIcon className={classes.appIcon} />
+                </IconButton>
+              </div>
+            </div>
+          </Card>     
+        </Box>
+        )}
+
       </Box>
     );
   }
@@ -184,11 +273,13 @@ EmptyState.propTypes = {
   size: PropTypes.string,
   padding: PropTypes.number,
 
+  user: PropTypes.object,
   image: PropTypes.element,
   title: PropTypes.string,
   description: PropTypes.string,
   search: PropTypes.bool,
   button: PropTypes.element,
+  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EmptyState);
+export default withStyles(styles, { withTheme: true })(EmptyState);

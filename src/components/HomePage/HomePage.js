@@ -79,6 +79,7 @@ class HomePage extends Component {
           title={`Welcome back, `+ user.firstName}
           description={process.env.REACT_APP_SEARCH_MESSAGE}
           search
+          user
           button={
             <Fab variant="extended" color="primary" component={Link} to="/">
               <Box clone mr={1}>
