@@ -85,7 +85,7 @@ class HomePage extends Component {
           />
         </Box>
       );
-      return <div>{pageView}</div>;
+      return <div style={{ height: 'fit-content' }}>{pageView}</div>;
     }
 
     return (
