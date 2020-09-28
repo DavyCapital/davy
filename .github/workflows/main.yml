@@ -138,7 +138,14 @@ jobs:
           GCP_SA_KEY: ${{ secrets.FIREBASE_CI_GCP_SA_KEY }}
           NODE_ENV: ${{ secrets.FIREBASE_CI_NODE_ENV }}
   cleanup: 
-    - name: create empty directory
+    name: Cleanup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: create cleanup directory
       run: |
         mkdir empty.d
     - name: empty build archive
