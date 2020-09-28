@@ -130,7 +130,7 @@ jobs:
       - name: Deploy Hosting
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
         env:
           PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
