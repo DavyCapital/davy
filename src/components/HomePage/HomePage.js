@@ -89,7 +89,7 @@ class HomePage extends Component {
     }
 
     return (
-      <Box>
+      <Box style={{ marginTop: "66px" }}>
         <EmptyState
           title={process.env.REACT_APP_DESCRIPTION}
           description={process.env.REACT_APP_MESSAGE}
