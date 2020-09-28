@@ -57,13 +57,13 @@ function Hit(props) {
     setOpen(false);
   };
   const imageWidth = 100;
-  const imageHeight = 100;
+  const imageHeight = 120;
 
   return (
-    <Box className="center" style={{ height: '222px'}}>
+    <Box className="center" style={{ height: 'fit-content' }}>
       <Box className="center" onClick={handleOpen}>
         {props.hit.image && (
-          <CardMedia style={{width:`${imageWidth}%`, height: `${imageHeight}%`, alignItems: 'center'}} src={`${props.hit.image}`} component='img'/>
+          <CardMedia width={`${imageWidth}%`}  height={`${imageHeight}px`} src={`${props.hit.image}`} component='img'/>
         )}
         <hr/>
         {props.hit.name && (
@@ -172,8 +172,8 @@ function SearchPage(props) {
 
         {props.search && (
           <Box mb={!props.description && props.button ? 2 : 0}>
-            <div className="center-panel" style={{ marginTop: '20%'}}>
-              <InstantSearch indexName="digital_assets" searchClient={searchClient}>
+            <div className="center-panel">
+              <InstantSearch indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
                 <SearchBox  />
                 <Hits hitComponent={Hit} />
                 <Pagination />
