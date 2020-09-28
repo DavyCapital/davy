@@ -114,20 +114,7 @@ class Bar extends Component {
                   </Button>
                 </Box>
               )}
-
-              {roles.includes("premium") && (
-              <Box mr={1}>
-                <Button
-                  color="inherit"
-                  component={Link}
-                  to={process.env.REACT_APP_PREMIUM_APP_PATH}
-                  variant="outlined"
-                >
-                  {process.env.REACT_APP_PREMIUM_APP_NAME}
-                </Button>
-              </Box>
-              )}
-
+              
               <IconButton
                 color="inherit"
                 disabled={performingAction}

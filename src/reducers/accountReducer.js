@@ -4,22 +4,14 @@ import {
     ADD_ACCOUNT,
     DELETE_ACCOUNT,
     GET_ACCOUNTS,
-    ACCOUNTS_LOADING,
-    GET_BALANCES,
-    BALANCES_LOADING,
-    GET_TRANSACTIONS,
-    TRANSACTIONS_LOADING
+    ACCOUNTS_LOADING
   } from "../actions/types";
 
   const initialState = {
     link: {},
     accounts: [],
-    balances: [],
-    transactions: [],
     linkLoading: false,
-    accountsLoading: false,
-    balancesLoading: false,
-    transactionsLoading: false
+    accountsLoading: false
   };
   export default function(state = initialState, action) {
     switch (action.type) {
@@ -57,28 +49,6 @@ import {
           ...state,
           accounts: action.payload,
           accountsLoading: false
-        };
-      case BALANCES_LOADING:
-        return {
-          ...state,
-          balancesLoading: true
-        };
-      case GET_BALANCES:
-        return {
-          ...state,
-          balances: action.payload,
-          balancesLoading: false
-        };
-      case TRANSACTIONS_LOADING:
-        return {
-          ...state,
-          transactionsLoading: true
-        };
-      case GET_TRANSACTIONS:
-        return {
-          ...state,
-          transactions: action.payload,
-          transactionsLoading: false
         };
       default:
         return state;
