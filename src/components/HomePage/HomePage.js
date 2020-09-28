@@ -7,7 +7,6 @@ import { withRouter , Link} from "react-router-dom";
 import { auth } from "../../firebase";
 
 import EmptyState from "../EmptyState";
-import DefaultPage from "../DefaultPage";
 
 import { Fab, Box } from "@material-ui/core";
 
@@ -72,20 +71,24 @@ class HomePage extends Component {
   };
 
   render() {
-    const { user , roles } = this.props;
+    const { user } = this.props;
 
     if (user) {
-      const pageView = (
-        <Box>
-          <DefaultPage 
-            title={`Welcome back, `+ user.firstName}
-            description="What would like search today?"
-            user={user}
-            roles={roles}
-          />
-        </Box>
+      return (
+        <EmptyState
+          title={`Welcome back, `+ user.firstName}
+          description={process.env.REACT_APP_SEARCH_MESSAGE}
+          search
+          button={
+            <Fab variant="extended" color="primary" component={Link} to="/">
+              <Box clone mr={1}>
+                <SearchIcon />
+              </Box>
+              Search
+            </Fab>
+          }
+        />
       );
-      return <div style={{ height: 'fit-content' }}>{pageView}</div>;
     }
 
     return (
@@ -93,8 +96,9 @@ class HomePage extends Component {
         <EmptyState
           title={process.env.REACT_APP_DESCRIPTION}
           description={process.env.REACT_APP_MESSAGE}
+          search
           button={
-            <Fab variant="extended" color="primary" component={Link} to="/search">
+            <Fab variant="extended" color="primary" component={Link} to="/getstarted">
               <Box clone mr={1}>
                 <SearchIcon />
               </Box>
@@ -112,8 +116,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-  user: PropTypes.object,
-  roles: PropTypes.object
+  user: PropTypes.object
 };
 
 export default withRouter(HomePage);
