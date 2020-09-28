@@ -17,7 +17,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 
-import { ReactComponent as InsertBannerIllustration } from "../../illustrations/logo.svg";
+import LocalParkingIcon from '@material-ui/icons/LocalParking';
 
 import UserAvatar from "../UserAvatar";
 
@@ -95,8 +95,8 @@ class Bar extends Component {
                 to="/"
                 variant="text"
               >
-                <InsertBannerIllustration />
-              </Button>
+                <LocalParkingIcon style={{transform: "rotate(-180deg)", height: 30, width: 30, backgroundColor: '#1c54b2', color: 'white', border: '1px', borderRadius: '3px', borderColor: 'white'}}/>
+              </Button><br/>
             </Typography>
           </Box>
 
@@ -114,7 +114,7 @@ class Bar extends Component {
                   </Button>
                 </Box>
               )}
-              
+
               <IconButton
                 color="inherit"
                 disabled={performingAction}
