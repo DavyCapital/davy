@@ -10,12 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import BeenhereIcon from '@material-ui/icons/Beenhere';
 
 const styles = theme => ({
   root: {
@@ -161,10 +156,7 @@ class EmptyState extends Component {
               <Divider className={classes.divider} />
               <InputBase disabled className={classes.input} placeholder="Apps"/>
               <IconButton className={classes.iconButton} aria-label="Wallets">
-                <AccountBalanceWalletIcon style={{color: '#b26500', border: '0px', borderRadius: '3px'}} />
-              </IconButton>
-              <IconButton className={classes.iconButton} aria-label="Insurance">
-                <BeenhereIcon style={{color: '#357a38', border: '0px', borderRadius: '3px'}}/>
+                <AccountBalanceWalletIcon style={{color: '#b26500', border: '0px', borderRadius: '3px'}} /> 
               </IconButton>
               <Divider className={classes.divider} />
               <IconButton className={classes.iconButton} aria-label="Assessment">
@@ -211,9 +203,10 @@ class EmptyState extends Component {
               <IconButton className={classes.iconButton} aria-label="Apps">
                 <LocalParkingIcon style={{transform: "rotate(-180deg)"}} />
               </IconButton>
-              <InputBase className={classes.input} placeholder="Search Keywords" id="textBoxSearch" />
-              <IconButton className={classes.iconButton} aria-label="Search">
-                <AccountBalanceIcon />
+              <Divider className={classes.divider} />
+              <InputBase disabled className={classes.input} placeholder="Apps"/>
+              <IconButton className={classes.iconButton} aria-label="Wallets">
+                <AccountBalanceWalletIcon style={{color: '#b26500', border: '0px', borderRadius: '3px'}} />
               </IconButton>
               <Divider className={classes.divider} />
               <IconButton className={classes.iconButton} aria-label="Assessment">
@@ -225,36 +218,6 @@ class EmptyState extends Component {
         )}
 
         {this.props.button && this.props.button}
-
-        {this.props.user && (
-        <Box mb={!this.props.description && this.props.button ? 2 : 0}>  
-          <br/>
-          <br/>
-          <Card className={classes.card} variant='outlined'>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-              <Typography component="h5" variant="h5">
-                  My Apps
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Select to access application 
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <IconButton aria-label="Item_1">
-                  <AccountBalanceWalletIcon className={classes.appIcon} />
-                </IconButton>
-                <IconButton aria-label="Item_2">
-                  <AccountBalanceIcon className={classes.appIcon} />
-                </IconButton>
-                <IconButton aria-label="Item_3">
-                  <BeenhereIcon className={classes.appIcon} />
-                </IconButton>
-              </div>
-            </div>
-          </Card>     
-        </Box>
-        )}
 
       </Box>
     );
