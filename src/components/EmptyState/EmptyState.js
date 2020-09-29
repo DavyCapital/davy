@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import { Box, Typography } from "@material-ui/core";
@@ -9,7 +9,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
-import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
 import Card from '@material-ui/core/Card';
@@ -27,7 +26,7 @@ const styles = theme => ({
   },
   input: {
     marginLeft: 8,
-    flex: 1,
+    flex: 1
   },
   iconButton: {
     padding: 10,
@@ -43,11 +42,11 @@ const styles = theme => ({
   details: {
     display: 'flex',
     flexDirection: 'column',
-    width: '300'
+    width: 'fit-content'
   },
   content: {
     flex: '1 0 auto',
-    textAlign: 'left'
+    textAlign: 'left',
   },
   controls: {
     display: 'flex',
@@ -59,15 +58,42 @@ const styles = theme => ({
     height: 38,
     width: 38,
   },
+  paper: {
+    marginRight: theme.spacing.unit * 2,
+  },
 });
 
-function EmptyState(props) {
-  const { classes } = props;
+class EmptyState extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      menu: {
+        anchorEl: null,
+      },
+    };
+  }
+
+  handleToggle = () => {
+    this.setState(state => ({ open: !state.open }));
+  };
+
+  handleClose = event => {
+    if (this.anchorEl.contains(event.target)) {
+      return;
+    }
+
+    this.setState({ open: false });
+  };
+
+  
+  render() {
   let imageWidth;
   let imageHeight;
   let variant;
+  const { classes } = this.props;
 
-  switch (props.size) {
+  switch (this.props.size) {
     case "small":
       imageWidth = 40;
       imageHeight = 40;
@@ -93,7 +119,7 @@ function EmptyState(props) {
       break;
   }
 
-  if (props.type === "page") {
+  if (this.props.type === "page") {
     return (
       <Box
         style={{ transform: "translate(-50%, -50%)" }}
@@ -102,134 +128,109 @@ function EmptyState(props) {
         left="50%"
         textAlign="center"
       >
-        {props.image && (
+        {this.props.image && (
           <Box
             clone
-            mb={props.title || props.description ? 2 : 0}
+            mb={this.props.title || this.props.description ? 2 : 0}
             width={`${imageWidth}%`}
             height={`${imageHeight}%`}
           >
-            {props.image}
+            {this.props.image}
           </Box>
         )}
 
-        {props.title && (
-          <Box mb={!props.description && props.button ? 2 : 0}>
-            <Typography variant={variant}>{props.title}</Typography>
+        {this.props.title && (
+          <Box mb={!this.props.description && this.props.button ? 2 : 0}>
+            <Typography variant={variant}>{this.props.title}</Typography>
           </Box>
         )}
 
-        {props.description && (
-          <Box mb={props.button && 2}>
-            <Typography variant="body1">{props.description}</Typography>
+        {this.props.description && (
+          <Box mb={this.props.button && 2}>
+            <Typography variant="body1">{this.props.description}</Typography>
+            <br/>
           </Box>
         )}
 
-        {props.search && (
-          <Box mb={!props.description && props.button ? 2 : 0}>  
+        {this.props.search && (
+          <Box mb={!this.props.description && this.props.button ? 2 : 0}>
             <Paper className={classes.root} elevation={1}>
               <IconButton className={classes.iconButton} aria-label="Apps">
                 <LocalParkingIcon style={{transform: "rotate(-180deg)", backgroundColor: '#1c54b2', color: 'white', border: '1px', borderRadius: '3px', borderColor: 'white'}} />
               </IconButton>
-              <InputBase className={classes.input} placeholder="Search Keywords" />
-              <IconButton className={classes.iconButton} aria-label="Search">
-                <SearchIcon />
+              <Divider className={classes.divider} />
+              <InputBase disabled className={classes.input} placeholder="Apps"/>
+              <IconButton className={classes.iconButton} aria-label="Wallets">
+                <AccountBalanceWalletIcon style={{color: '#b26500', border: '0px', borderRadius: '3px'}} />
+              </IconButton>
+              <IconButton className={classes.iconButton} aria-label="Insurance">
+                <BeenhereIcon style={{color: '#357a38', border: '0px', borderRadius: '3px'}}/>
               </IconButton>
               <Divider className={classes.divider} />
-              <IconButton color="primary" className={classes.iconButton} aria-label="Assessment">
-                <AssessmentIcon />
+              <IconButton className={classes.iconButton} aria-label="Assessment">
+                <AssessmentIcon style={{color: '#ff5722', border: '0px', borderRadius: '3px'}} />
               </IconButton>
             </Paper>
             <br/>
           </Box>
         )}
 
-        {props.button && props.button}
-
-        {props.user && (
-        <Box mb={!props.description && props.button ? 2 : 0}>  
-          <br/>
-          <br/>
-          <Card className={classes.card}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-              <Typography component="h5" variant="h5">
-                  My Apps
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  Select to access application 
-                </Typography>
-              </CardContent>
-              <div className={classes.controls}>
-                <IconButton aria-label="Item_1">
-                  <AccountBalanceWalletIcon className={classes.appIcon} />
-                </IconButton>
-                <IconButton aria-label="Item_2">
-                  <AccountBalanceIcon className={classes.appIcon} />
-                </IconButton>
-                <IconButton aria-label="Item_3">
-                  <BeenhereIcon className={classes.appIcon} />
-                </IconButton>
-              </div>
-            </div>
-          </Card>     
-        </Box>
-        )}
+        {this.props.button && this.props.button}
       </Box>
     );
   }
 
-  if (props.type === "card") {
+  if (this.this.props.type === "card") {
     return (
-      <Box padding={props.padding} textAlign="center">
-        {props.image && (
+      <Box padding={this.props.padding} textAlign="center">
+        {this.props.image && (
           <Box
             clone
-            mb={props.title || props.description ? 2 : 0}
+            mb={this.props.title || this.props.description ? 2 : 0}
             width={`${imageWidth}%`}
             height={`${imageHeight}%`}
           >
-            {props.image}
+            {this.props.image}
           </Box>
         )}
 
-        {props.title && (
-          <Box mb={!props.description && props.button ? 2 : 0}>
-            <Typography variant={variant}>{props.title}</Typography>
+        {this.props.title && (
+          <Box mb={!this.props.description && this.props.button ? 2 : 0}>
+            <Typography variant={variant}>{this.props.title}</Typography>
           </Box>
         )}
-        {props.description && (
-          <Box mb={props.button && 2}>
-            <Typography variant="body1">{props.description}</Typography>
+        {this.props.description && (
+          <Box mb={this.props.button && 2}>
+            <Typography variant="body1">{this.props.description}</Typography>
           </Box>
         )}
 
-        {props.search && (
-          <Box mb={!props.description && props.button ? 2 : 0}>  
+        {this.props.search && (
+          <Box mb={!this.props.description && this.props.button ? 2 : 0}>  
             <Paper className={classes.root} elevation={1}>
               <IconButton className={classes.iconButton} aria-label="Apps">
                 <LocalParkingIcon style={{transform: "rotate(-180deg)"}} />
               </IconButton>
-              <InputBase className={classes.input} placeholder="Search Keywords" />
+              <InputBase className={classes.input} placeholder="Search Keywords" id="textBoxSearch" />
               <IconButton className={classes.iconButton} aria-label="Search">
-                <SearchIcon />
+                <AccountBalanceIcon />
               </IconButton>
               <Divider className={classes.divider} />
-              <IconButton color="primary" className={classes.iconButton} aria-label="Assessment">
-                <AssessmentIcon />
+              <IconButton className={classes.iconButton} aria-label="Assessment">
+                <AssessmentIcon style={{color: '#ff5722', border: '0px', borderRadius: '3px'}}/>
               </IconButton>
             </Paper>
             <br/>
           </Box>
         )}
 
-        {props.button && props.button}
+        {this.props.button && this.props.button}
 
-        {props.user && (
-        <Box mb={!props.description && props.button ? 2 : 0}>  
+        {this.props.user && (
+        <Box mb={!this.props.description && this.props.button ? 2 : 0}>  
           <br/>
           <br/>
-          <Card className={classes.card}>
+          <Card className={classes.card} variant='outlined'>
             <div className={classes.details}>
               <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">
@@ -260,6 +261,7 @@ function EmptyState(props) {
   }
 
   return null;
+  }
 }
 
 EmptyState.defaultProps = {

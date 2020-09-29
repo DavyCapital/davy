@@ -13,34 +13,6 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/logo.svg">
     <link rel="apple-touch-icon" href="logo222.svg" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <style>
-      .algolia-autocomplete {
-        width: 100%;
-      }
-      .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-        width: 100%;
-      }
-      .algolia-autocomplete .aa-hint {
-        color: #999;
-      }
-      .algolia-autocomplete .aa-dropdown-menu {
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #999;
-        border-top: none;
-      }
-      .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-        cursor: pointer;
-        padding: 5px 4px;
-      }
-      .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-        background-color: #B2D7FF;
-      }
-      .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-        font-weight: bold;
-        font-style: normal;
-      }
-    </style>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -50,41 +22,12 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <title>%REACT_APP_TITLE%</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <form action="#" class="form">
-            <input class="form-control" id="search-input" name="contacts" type="text" placeholder='Real Estate / Art / Gold' />
-          </form>
-        </div>
-      </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
-    <script>
-      var client = algoliasearch(`%REACT_APP_ALGOLIA_APP_ID%`, `%REACT_APP_ALGOLIA_API_KEY%`);
-      var index = client.initIndex(`%REACT_APP_ALGOLIA_INDEX_NAME%`);
-      autocomplete('#search-input', { hint: false }, [
-        {
-          source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
-          displayKey: 'name',
-          templates: {
-            suggestion: function(suggestion) {
-              return suggestion._highlightResult.name.value;
-            }
-          }
-        }
-      ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-        console.log(suggestion, dataset);
-        alert('dataset: ' + dataset + ', ' + suggestion.name);
-      });
-    </script> -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
