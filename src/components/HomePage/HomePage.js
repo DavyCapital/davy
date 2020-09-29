@@ -12,7 +12,7 @@ import { Fab, Box } from "@material-ui/core";
 
 import authentication from "../../services/authentication";
 
-import { Search as SearchIcon } from "@material-ui/icons";
+import { BlurOn as BlurIcon } from "@material-ui/icons";
 
 class HomePage extends Component {
   signInWithEmailLink = () => {
@@ -79,15 +79,7 @@ class HomePage extends Component {
           title={`Welcome back, `+ user.firstName}
           description={process.env.REACT_APP_SEARCH_MESSAGE}
           search
-          user
-          button={
-            <Fab variant="extended" color="primary" component={Link} to="/">
-              <Box clone mr={1}>
-                <SearchIcon />
-              </Box>
-              Search
-            </Fab>
-          }
+          user={user}
         />
       );
     }
@@ -97,13 +89,12 @@ class HomePage extends Component {
         <EmptyState
           title={process.env.REACT_APP_DESCRIPTION}
           description={process.env.REACT_APP_MESSAGE}
-          search
           button={
             <Fab variant="extended" color="primary" component={Link} to="/getstarted">
               <Box clone mr={1}>
-                <SearchIcon />
+                <BlurIcon />
               </Box>
-              Search
+              Get Started
             </Fab>
           }
         />
